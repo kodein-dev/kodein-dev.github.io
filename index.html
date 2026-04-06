@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>kodein.cc</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- LANG TOGGLE -->
+<button class="lang-btn" id="langBtn">RU</button>
+
+<!-- TERMINAL WRAPPER -->
+<div class="terminal" id="terminal">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="tb-dots">
+      <span class="dot red"></span>
+      <span class="dot yellow"></span>
+      <span class="dot green"></span>
+    </div>
+    <span class="tb-title">kodein@injector:~</span>
+    <span class="tb-right">bash</span>
+  </div>
+
+  <!-- TERMINAL BODY -->
+  <div class="term-body" id="termBody">
+
+    <!-- MOTD / BANNER -->
+    <div class="block motd">
+      <pre class="ascii-banner rainbow-chars" id="banner">
+ ██╗  ██╗ ██████╗ ██████╗ ███████╗██╗███╗   ██╗
+ ██║ ██╔╝██╔═══██╗██╔══██╗██╔════╝██║████╗  ██║
+ █████╔╝ ██║   ██║██║  ██║█████╗  ██║██╔██╗ ██║
+ ██╔═██╗ ██║   ██║██║  ██║██╔══╝  ██║██║╚██╗██║
+ ██║  ██╗╚██████╔╝██████╔╝███████╗██║██║ ╚████║
+ ╚═╝  ╚═╝ ╚═════╝ ╚═════╝ ╚══════╝╚═╝╚═╝  ╚═══╝</pre>
+      <div class="motd-line"><span class="c-green">kodein.cc</span> <span class="c-dim">—</span> <span class="c-white" data-i18n="motd_desc">roblox injector</span></div>
+      <div class="motd-line"><span class="c-dim">version</span> <span class="c-pink">4.2.0</span> <span class="c-dim">|</span> <span class="c-dim">status:</span> <span class="c-green blink">● online</span> <span class="c-dim">|</span> <span class="c-dim">detection:</span> <span class="c-green">0%</span></div>
+      <div class="motd-line c-dim" data-i18n="motd_hint">type 'help' to see available commands</div>
+    </div>
+
+    <!-- OUTPUT AREA — filled by JS -->
+    <div id="output"></div>
+
+    <!-- INPUT LINE -->
+    <div class="input-line" id="inputLine">
+      <span class="prompt-full">
+        <span class="c-green">kodein</span><span class="c-dim">@</span><span class="c-pink">injector</span><span class="c-dim">:</span><span class="c-blue">~</span><span class="c-dim">$</span>
+      </span>
+      <input
+        type="text"
+        id="termInput"
+        class="term-input"
+        autocomplete="off"
+        autocorrect="off"
+        autocapitalize="off"
+        spellcheck="false"
+        autofocus
+      />
+      <span class="cursor-block" id="fakeCursor"></span>
+    </div>
+
+  </div>
+</div>
+
+<script src="i18n.js"></script>
+<script src="main.js"></script>
+</body>
+</html>

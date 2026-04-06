@@ -1,0 +1,242 @@
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --bg:#000;
+  --term-bg:#0d0d0d;
+  --topbar:#1a1a1a;
+  --border:#2a2a2a;
+  --green:#50fa7b;
+  --pink:#ff79c6;
+  --purple:#bd93f9;
+  --blue:#8be9fd;
+  --yellow:#f1fa8c;
+  --orange:#ffb86c;
+  --red:#ff5555;
+  --white:#f8f8f2;
+  --dim:#6272a4;
+  --dim2:#44475a;
+  --font:'JetBrains Mono','Fira Code','Fira Mono','Courier New',monospace;
+}
+
+html,body{
+  height:100%;background:var(--bg);
+  font-family:var(--font);font-size:13px;
+  overflow:hidden;
+}
+
+/* ── LANG BUTTON ── */
+.lang-btn{
+  position:fixed;top:12px;right:16px;z-index:999;
+  background:transparent;border:1px solid var(--dim2);
+  color:var(--dim);padding:3px 10px;border-radius:3px;
+  cursor:pointer;font-family:var(--font);font-size:11px;
+  transition:all .15s;
+}
+.lang-btn:hover{border-color:var(--pink);color:var(--pink)}
+
+/* ── TERMINAL WINDOW ── */
+.terminal{
+  position:fixed;inset:0;
+  display:flex;flex-direction:column;
+  background:var(--term-bg);
+  overflow:hidden;
+}
+
+/* TOPBAR */
+.topbar{
+  display:flex;align-items:center;gap:10px;
+  padding:8px 14px;
+  background:var(--topbar);
+  border-bottom:1px solid var(--border);
+  flex-shrink:0;
+  user-select:none;
+}
+.tb-dots{display:flex;gap:6px}
+.dot{width:12px;height:12px;border-radius:50%}
+.dot.red{background:#ff5555}
+.dot.yellow{background:#f1fa8c}
+.dot.green{background:#50fa7b}
+.tb-title{
+  flex:1;text-align:center;
+  font-size:11px;color:var(--dim);letter-spacing:.5px;
+}
+.tb-right{font-size:11px;color:var(--dim2)}
+
+/* BODY */
+.term-body{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  padding:16px 20px 8px;
+  display:flex;flex-direction:column;
+  gap:0;
+  scroll-behavior:smooth;
+}
+.term-body::-webkit-scrollbar{width:4px}
+.term-body::-webkit-scrollbar-track{background:transparent}
+.term-body::-webkit-scrollbar-thumb{background:var(--dim2);border-radius:2px}
+
+/* ── MOTD ── */
+.motd{margin-bottom:16px}
+.ascii-banner{
+  font-size:10px;line-height:1.2;
+  margin-bottom:8px;
+  white-space:pre;
+  overflow:hidden;
+}
+.motd-line{
+  font-size:12px;line-height:1.8;
+}
+
+/* ── RAINBOW CHARS — быстрая смена, steps(1) ── */
+@keyframes rf{
+  0%  {color:#ffb3c6}
+  12% {color:#ffd6a5}
+  25% {color:#fdffb6}
+  37% {color:#caffbf}
+  50% {color:#9bf6ff}
+  62% {color:#a0c4ff}
+  75% {color:#bdb2ff}
+  87% {color:#ffc6ff}
+  100%{color:#ffb3c6}
+}
+.rainbow-chars{animation:rf .18s steps(1) infinite}
+
+/* ── OUTPUT BLOCKS ── */
+#output{display:flex;flex-direction:column;gap:0}
+
+.out-block{
+  margin-bottom:4px;
+  line-height:1.7;
+  font-size:12.5px;
+}
+
+/* prompt line */
+.prompt-line{
+  display:flex;align-items:center;gap:6px;
+  margin-bottom:2px;
+  flex-wrap:wrap;
+}
+.prompt-full{white-space:nowrap;flex-shrink:0}
+
+/* output text */
+.out-text{
+  padding-left:0;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+/* table output */
+.out-table{
+  border-collapse:collapse;
+  font-size:12px;
+  margin:4px 0;
+}
+.out-table td,.out-table th{
+  padding:2px 16px 2px 0;
+  vertical-align:top;
+  white-space:nowrap;
+}
+.out-table th{color:var(--dim);font-weight:400;border-bottom:1px solid var(--dim2)}
+
+/* progress bar */
+.prog-wrap{margin:6px 0}
+.prog-label{font-size:11px;color:var(--dim);margin-bottom:3px}
+.prog-bar{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;
+}
+.prog-track{
+  flex:1;height:6px;background:var(--dim2);
+  border-radius:2px;overflow:hidden;max-width:300px;
+}
+.prog-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,var(--pink),var(--purple));
+  border-radius:2px;transition:width .06s linear;
+}
+.prog-pct{color:var(--pink);font-size:11px;min-width:32px}
+
+/* step list */
+.step-list{display:flex;flex-direction:column;gap:2px;margin:4px 0}
+.step-item{font-size:12px;display:flex;align-items:center;gap:8px}
+.step-dot{width:6px;height:6px;border-radius:50%;background:var(--dim2);flex-shrink:0}
+.step-item.done .step-dot{background:var(--green)}
+.step-item.active .step-dot{background:var(--pink);animation:sdot .6s ease-in-out infinite}
+.step-item.done{color:var(--white)}
+.step-item.active{color:var(--pink)}
+@keyframes sdot{0%,100%{transform:scale(1)}50%{transform:scale(1.6)}}
+
+/* inject button row */
+.inject-row{
+  display:flex;align-items:center;gap:12px;
+  margin:8px 0;flex-wrap:wrap;
+}
+.inj-btn{
+  background:transparent;
+  border:1px solid var(--pink);
+  color:var(--pink);
+  padding:5px 18px;border-radius:3px;
+  cursor:pointer;font-family:var(--font);font-size:12px;
+  transition:all .15s;
+}
+.inj-btn:hover{background:rgba(255,121,198,0.1)}
+.inj-btn.success{border-color:var(--green);color:var(--green)}
+.inj-btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* script selector */
+.script-select{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin:6px 0;
+}
+.sc-opt{
+  background:transparent;border:1px solid var(--dim2);
+  color:var(--dim);padding:3px 12px;border-radius:2px;
+  cursor:pointer;font-family:var(--font);font-size:11px;
+  transition:all .15s;
+}
+.sc-opt:hover{border-color:var(--purple);color:var(--purple)}
+.sc-opt.active{border-color:var(--pink);color:var(--pink);background:rgba(255,121,198,0.08)}
+
+/* ── INPUT LINE ── */
+.input-line{
+  display:flex;align-items:center;gap:6px;
+  padding:6px 0 4px;
+  flex-shrink:0;
+  position:relative;
+}
+.term-input{
+  flex:1;background:transparent;border:none;outline:none;
+  color:var(--white);font-family:var(--font);font-size:13px;
+  caret-color:transparent;
+  min-width:0;
+}
+.cursor-block{
+  width:8px;height:14px;
+  background:var(--white);
+  display:inline-block;
+  animation:cur .9s step-end infinite;
+  flex-shrink:0;
+}
+@keyframes cur{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── COLORS ── */
+.c-green{color:var(--green)}
+.c-pink{color:var(--pink)}
+.c-purple{color:var(--purple)}
+.c-blue{color:var(--blue)}
+.c-yellow{color:var(--yellow)}
+.c-orange{color:var(--orange)}
+.c-red{color:var(--red)}
+.c-white{color:var(--white)}
+.c-dim{color:var(--dim)}
+.c-dim2{color:var(--dim2)}
+.blink{animation:blink 1.4s step-end infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.bold{font-weight:700}
+
+/* ── MOBILE ── */
+@media(max-width:600px){
+  html,body{font-size:11px}
+  .term-body{padding:10px 12px 6px}
+  .ascii-banner{font-size:7px}
+  .out-table td,.out-table th{padding:2px 10px 2px 0}
+}
